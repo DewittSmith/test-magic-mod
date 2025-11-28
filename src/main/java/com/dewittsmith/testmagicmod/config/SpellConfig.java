@@ -54,21 +54,21 @@ public class SpellConfig {
                     ), obj -> obj instanceof String);
 
             builder.pop();
-            
+
             builder.comment("HUD configuration").push("hud");
-            
+
             showManaBar = builder
                     .comment("Show the mana bar overlay")
                     .define("show_mana_bar", true);
-            
+
             manaBarOffsetX = builder
                     .comment("Horizontal offset for mana bar position (0 = default position)")
                     .defineInRange("mana_bar_offset_x", 0, -200, 200);
-            
+
             manaBarOffsetY = builder
                     .comment("Vertical offset for mana bar position (negative = higher, positive = lower)")
                     .defineInRange("mana_bar_offset_y", -10, -100, 100);
-            
+
             builder.pop();
         }
 

@@ -81,17 +81,17 @@ public class ManaBarRenderer {
             }
 
             String manaText = String.format("%.0f/%.0f", displayMana, maxMana);
-            
+
             guiGraphics.pose().pushPose();
             guiGraphics.pose().scale(MANA_TEXT_SCALE, MANA_TEXT_SCALE, 1.0f);
-            
+
             int scaledTextWidth = (int) (minecraft.font.width(manaText) * MANA_TEXT_SCALE);
             int textX = (int) ((x + (MANA_BAR_WIDTH - scaledTextWidth) / 2) / MANA_TEXT_SCALE);
             int textY = (int) ((y + 2) / MANA_TEXT_SCALE);
 
             // Amount text.
             guiGraphics.drawString(minecraft.font, manaText, textX, textY, 0xFFFFFF, false);
-            
+
             guiGraphics.pose().popPose();
 
             RenderSystem.disableBlend();

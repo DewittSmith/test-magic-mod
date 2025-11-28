@@ -37,7 +37,7 @@ public class ManaCapabilityEvents {
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
         if (event.phase == TickEvent.Phase.END && !event.player.level().isClientSide) {
             long currentTick = event.player.level().getGameTime();
-            
+
             event.player.getCapability(ManaCapability.MANA_CAPABILITY).ifPresent(manaCapability -> {
                 float oldMana = manaCapability.getCurrentMana();
                 ManaCapability.tickMana(event.player, currentTick);

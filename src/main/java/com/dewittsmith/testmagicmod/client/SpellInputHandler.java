@@ -1,6 +1,7 @@
 package com.dewittsmith.testmagicmod.client;
 
 import com.dewittsmith.testmagicmod.TestMagicMod;
+import com.dewittsmith.testmagicmod.client.gui.SpellSlotsRenderer;
 import com.dewittsmith.testmagicmod.config.SpellConfig;
 import com.dewittsmith.testmagicmod.init.ModSpells;
 import com.dewittsmith.testmagicmod.manager.CooldownManager;
@@ -46,6 +47,8 @@ public class SpellInputHandler {
             }
 
             if (!canCastClientSide(player, spellId)) {
+                // Trigger red flash effect for failed cast attempt.
+                SpellSlotsRenderer.triggerFailureFlash(spellSlot);
                 return;
             }
 

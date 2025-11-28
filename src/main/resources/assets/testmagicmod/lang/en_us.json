@@ -15,7 +15,6 @@
   "message.testmagicmod.spell.invalid_target": "Invalid target or conditions",
   "message.testmagicmod.spell.disabled": "Spell is disabled",
   "message.testmagicmod.spell.success": "Spell cast successfully",
-  
   "config.testmagicmod.hud.show_mana_bar": "Show Mana Bar",
   "config.testmagicmod.hud.mana_bar_offset_x": "Mana Bar X Offset",
   "config.testmagicmod.hud.mana_bar_offset_y": "Mana Bar Y Offset"

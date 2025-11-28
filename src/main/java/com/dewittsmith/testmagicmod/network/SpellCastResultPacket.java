@@ -1,6 +1,8 @@
 package com.dewittsmith.testmagicmod.network;
 
 import com.dewittsmith.testmagicmod.TestMagicMod;
+import com.dewittsmith.testmagicmod.client.gui.SpellSlotsRenderer;
+import com.dewittsmith.testmagicmod.config.SpellConfig;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import org.zeith.hammerlib.net.IPacket;
@@ -18,6 +20,7 @@ public class SpellCastResultPacket implements IPacket {
     private ResourceLocation spellId;
     private Result result;
     private CharSequence message;
+
     public SpellCastResultPacket() {
         // Default constructor for packet registration.
     }
@@ -50,10 +53,27 @@ public class SpellCastResultPacket implements IPacket {
 
     @Override
     public void clientExecute(PacketContext ctx) {
-        if (result != Result.SUCCESS && !message.isEmpty()) {
-            // TODO: Display error to player
-            TestMagicMod.LOGGER.info("Spell cast failed: " + message);
+        if (result != Result.SUCCESS) {
+            // Trigger red flash effect for the failed spell
+            int slot = findSlotForSpell(spellId);
+            if (slot != -1) {
+                SpellSlotsRenderer.triggerFailureFlash(slot);
+            }
+
+            if (!message.isEmpty()) {
+                TestMagicMod.LOGGER.info("Spell cast failed: " + message);
+            }
         }
+    }
+
+    private int findSlotForSpell(ResourceLocation spellId) {
+        for (int i = 0; i < 4; i++) {
+            ResourceLocation slotSpell = SpellConfig.CLIENT.getSpellForSlot(i);
+            if (spellId.equals(slotSpell)) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     public ResourceLocation getSpellId() {
