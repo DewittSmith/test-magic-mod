@@ -2,6 +2,7 @@ package com.dewittsmith.testmagicmod.client.gui;
 
 import com.dewittsmith.testmagicmod.TestMagicMod;
 import com.dewittsmith.testmagicmod.capability.ManaCapability;
+import com.dewittsmith.testmagicmod.client.ModKeyBindings;
 import com.dewittsmith.testmagicmod.config.SpellConfig;
 import com.dewittsmith.testmagicmod.init.ModSpells;
 import com.dewittsmith.testmagicmod.manager.CooldownManager;
@@ -93,9 +94,7 @@ public class SpellSlotsRenderer {
         // Check for failure flash.
         long currentTime = minecraft.level != null ? minecraft.level.getGameTime() : 0;
         Long flashTime = failureFlashTimes.get(slot);
-        boolean isFlashing = false;
         if (flashTime != null && (currentTime - flashTime) < FAILURE_FLASH_DURATION) {
-            isFlashing = true;
             backgroundColor = 0x80FF0000;
         } else {
             failureFlashTimes.remove(slot);
@@ -195,12 +194,9 @@ public class SpellSlotsRenderer {
     }
 
     private static String getKeybindForSlot(int slot) {
-        return switch (slot) {
-            case 0 -> "Z";
-            case 1 -> "X";
-            case 2 -> "C";
-            case 3 -> "V";
-            default -> null;
-        };
+        if (slot >= 0 && slot < ModKeyBindings.ALL_SPELL_KEYS.length) {
+            return ModKeyBindings.ALL_SPELL_KEYS[slot].getTranslatedKeyMessage().getString().toUpperCase();
+        }
+        return null;
     }
 }
