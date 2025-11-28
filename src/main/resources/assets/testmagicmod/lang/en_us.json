@@ -1,0 +1,18 @@
+{
+  "key.categories.testmagicmod.spells": "Test Magic Mod - Spells",
+  "key.testmagicmod.cast_spell_1": "Cast Spell 1",
+  "key.testmagicmod.cast_spell_2": "Cast Spell 2",
+  "key.testmagicmod.cast_spell_3": "Cast Spell 3",
+  "key.testmagicmod.cast_spell_4": "Cast Spell 4",
+  "spell.testmagicmod.fireball": "Fireball",
+  "spell.testmagicmod.haste": "Haste",
+  "spell.testmagicmod.mine": "Magic Mine",
+  "spell.testmagicmod.teleport": "Teleport",
+  "message.testmagicmod.spell.insufficient_mana": "Not enough mana",
+  "message.testmagicmod.spell.insufficient_items": "Missing required items",
+  "message.testmagicmod.spell.insufficient_health": "Not enough health",
+  "message.testmagicmod.spell.on_cooldown": "Spell is on cooldown",
+  "message.testmagicmod.spell.invalid_target": "Invalid target or conditions",
+  "message.testmagicmod.spell.disabled": "Spell is disabled",
+  "message.testmagicmod.spell.success": "Spell cast successfully"
+}
