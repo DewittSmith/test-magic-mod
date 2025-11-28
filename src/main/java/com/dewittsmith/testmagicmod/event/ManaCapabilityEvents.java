@@ -3,6 +3,7 @@ package com.dewittsmith.testmagicmod.event;
 import com.dewittsmith.testmagicmod.TestMagicMod;
 import com.dewittsmith.testmagicmod.capability.ManaCapability;
 import com.dewittsmith.testmagicmod.capability.ManaCapabilityProvider;
+import com.dewittsmith.testmagicmod.manager.SpellCastManager;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
@@ -46,7 +47,7 @@ public class ManaCapabilityEvents {
                 // Sync mana every 100 ticks (5 seconds) or when mana changes significantly.
                 if (currentTick % 100 == 0 || Math.abs(newMana - oldMana) > 1f) {
                     if (event.player instanceof net.minecraft.server.level.ServerPlayer serverPlayer) {
-                        com.dewittsmith.testmagicmod.manager.SpellCastManager.syncPlayerData(serverPlayer);
+                        SpellCastManager.syncPlayerData(serverPlayer);
                     }
                 }
             });
@@ -65,7 +66,7 @@ public class ManaCapabilityEvents {
     @SubscribeEvent
     public static void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event) {
         if (event.getEntity() instanceof net.minecraft.server.level.ServerPlayer serverPlayer) {
-            com.dewittsmith.testmagicmod.manager.SpellCastManager.syncPlayerData(serverPlayer);
+            SpellCastManager.syncPlayerData(serverPlayer);
         }
     }
 }

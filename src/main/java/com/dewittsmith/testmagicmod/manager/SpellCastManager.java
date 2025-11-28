@@ -7,6 +7,7 @@ import com.dewittsmith.testmagicmod.network.CooldownSyncPacket;
 import com.dewittsmith.testmagicmod.network.ManaSyncPacket;
 import com.dewittsmith.testmagicmod.network.SpellCastResultPacket;
 import com.dewittsmith.testmagicmod.spell.ISpell;
+import com.dewittsmith.testmagicmod.spell.cost.ManaCost;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import org.zeith.hammerlib.net.Network;
@@ -69,8 +70,8 @@ public class SpellCastManager {
 
         float currentMana = ManaCapability.getCurrentMana(player);
         float requiredMana = spell.getCosts().stream()
-                .filter(cost -> cost instanceof com.dewittsmith.testmagicmod.spell.cost.ManaCost)
-                .map(cost -> ((com.dewittsmith.testmagicmod.spell.cost.ManaCost) cost).getAmount())
+                .filter(cost -> cost instanceof ManaCost)
+                .map(cost -> ((ManaCost) cost).getAmount())
                 .reduce(0f, Float::sum);
 
         if (currentMana < requiredMana) {
