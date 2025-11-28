@@ -1,0 +1,25 @@
+{
+  "texture": {
+    "mana_bar": {
+      "url": "testmagicmod:textures/gui/mana_bar.png",
+      "width": 81,
+      "height": 19,
+      "sprites": [
+        {
+          "sprite": "testmagicmod:gui/mana_bar_empty",
+          "x": 0,
+          "y": 0,
+          "width": 81,
+          "height": 9
+        },
+        {
+          "sprite": "testmagicmod:gui/mana_bar_filled",
+          "x": 1,
+          "y": 10,
+          "width": 79,
+          "height": 7
+        }
+      ]
+    }
+  }
+}

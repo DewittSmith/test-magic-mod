@@ -1,7 +1,9 @@
 package com.dewittsmith.testmagicmod.manager;
 
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.entity.player.Player;
+import net.minecraftforge.server.ServerLifecycleHooks;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -121,6 +123,7 @@ public class CooldownManager {
     }
 
     private static long getCurrentTick() {
-        return System.currentTimeMillis() / 50; // TODO
+        MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
+        return server.getTickCount();
     }
 }

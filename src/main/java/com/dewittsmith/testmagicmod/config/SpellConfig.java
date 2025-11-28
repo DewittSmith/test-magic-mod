@@ -31,12 +31,15 @@ public class SpellConfig {
     }
 
     public static void register(FMLJavaModLoadingContext context) {
-        context.registerConfig(ModConfig.Type.CLIENT, CLIENT_SPEC);
-        context.registerConfig(ModConfig.Type.SERVER, SERVER_SPEC);
+        context.registerConfig(ModConfig.Type.CLIENT, CLIENT_SPEC, "testmagicmod-client.toml");
+        context.registerConfig(ModConfig.Type.SERVER, SERVER_SPEC, "testmagicmod-server.toml");
     }
 
     public static class Client {
         public final ForgeConfigSpec.ConfigValue<List<? extends String>> spellSlots;
+        public final ForgeConfigSpec.BooleanValue showManaBar;
+        public final ForgeConfigSpec.IntValue manaBarOffsetX;
+        public final ForgeConfigSpec.IntValue manaBarOffsetY;
 
         Client(ForgeConfigSpec.Builder builder) {
             builder.comment("Client-side spell configuration").push("spells");
@@ -44,12 +47,28 @@ public class SpellConfig {
             spellSlots = builder
                     .comment("Spell assignments for slots 1-4 (Z, X, C, V keys by default)")
                     .defineList("spell_slots", Arrays.asList(
-                            TestMagicMod.MODID + ":fireball",
-                            TestMagicMod.MODID + ":haste",
-                            TestMagicMod.MODID + ":mine",
-                            TestMagicMod.MODID + ":teleport"
+                            TestMagicMod.MODID + ".fireball",
+                            TestMagicMod.MODID + ".haste",
+                            TestMagicMod.MODID + ".mine",
+                            TestMagicMod.MODID + ".teleport"
                     ), obj -> obj instanceof String);
 
+            builder.pop();
+            
+            builder.comment("HUD configuration").push("hud");
+            
+            showManaBar = builder
+                    .comment("Show the mana bar overlay")
+                    .define("show_mana_bar", true);
+            
+            manaBarOffsetX = builder
+                    .comment("Horizontal offset for mana bar position (0 = default position)")
+                    .defineInRange("mana_bar_offset_x", 0, -200, 200);
+            
+            manaBarOffsetY = builder
+                    .comment("Vertical offset for mana bar position (negative = higher, positive = lower)")
+                    .defineInRange("mana_bar_offset_y", -10, -100, 100);
+            
             builder.pop();
         }
 

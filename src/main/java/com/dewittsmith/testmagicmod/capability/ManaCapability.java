@@ -19,7 +19,7 @@ public class ManaCapability implements INBTSerializable<CompoundTag> {
     public static final String MANA_REGEN = "ManaRegen";
     public static final String LAST_REGEN_TICK = "LastRegenTick";
     private static final float DEFAULT_MAX_MANA = 100;
-    private static final float DEFAULT_MANA_REGEN = 1.0f; // per second
+    private static final float DEFAULT_MANA_REGEN = 5.0f; // per second
     private float currentMana;
     private float maxMana;
     private float manaRegen;
@@ -104,14 +104,16 @@ public class ManaCapability implements INBTSerializable<CompoundTag> {
             return;
         }
 
-        long tickDiff = currentTick - lastRegenTick;
+        if (currentMana >= maxMana) {
+            return;
+        }
 
-        if (tickDiff >= 20 && currentMana < maxMana) { // Regenerate every second (20 ticks)
-            float regenAmount = manaRegen * (tickDiff / 20.0f);
-            if (regenAmount > 0f) {
-                restoreMana(regenAmount);
-                lastRegenTick = currentTick;
-            }
+        long tickDiff = currentTick - lastRegenTick;
+        float regenAmount = manaRegen * (tickDiff / 20.0f);
+
+        if (regenAmount > 1f) {
+            restoreMana(regenAmount);
+            lastRegenTick = currentTick;
         }
     }
 

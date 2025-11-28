@@ -37,7 +37,19 @@ public class ManaCapabilityEvents {
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
         if (event.phase == TickEvent.Phase.END && !event.player.level().isClientSide) {
             long currentTick = event.player.level().getGameTime();
-            ManaCapability.tickMana(event.player, currentTick);
+            
+            event.player.getCapability(ManaCapability.MANA_CAPABILITY).ifPresent(manaCapability -> {
+                float oldMana = manaCapability.getCurrentMana();
+                ManaCapability.tickMana(event.player, currentTick);
+                float newMana = manaCapability.getCurrentMana();
+
+                // Sync mana every 100 ticks (5 seconds) or when mana changes significantly.
+                if (currentTick % 100 == 0 || Math.abs(newMana - oldMana) > 1f) {
+                    if (event.player instanceof net.minecraft.server.level.ServerPlayer serverPlayer) {
+                        com.dewittsmith.testmagicmod.manager.SpellCastManager.syncPlayerData(serverPlayer);
+                    }
+                }
+            });
         }
     }
 
