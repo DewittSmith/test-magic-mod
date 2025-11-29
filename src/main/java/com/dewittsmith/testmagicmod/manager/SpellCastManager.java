@@ -64,7 +64,7 @@ public class SpellCastManager {
     }
 
     private static SpellCastResultPacket.Result determineFailureReason(ServerPlayer player, ISpell spell) {
-        if (player.getAbilities().instabuild) {
+        if (player.isCreative()) {
             return SpellCastResultPacket.Result.INVALID_TARGET;
         }
 
