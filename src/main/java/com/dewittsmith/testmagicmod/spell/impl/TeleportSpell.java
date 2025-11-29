@@ -25,7 +25,7 @@ public class TeleportSpell extends Spell {
 
     public TeleportSpell() {
         super(
-                ResourceLocation.parse(TestMagicMod.MODID + ".teleport"),
+                TestMagicMod.MODID, "spell.teleport",
                 List.of(new ManaCost(MANA_COST)),
                 COOLDOWN_TICKS
         );

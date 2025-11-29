@@ -13,8 +13,8 @@ public abstract class Spell implements ISpell {
     private final List<SpellCost> costs;
     private final int cooldownTicks;
 
-    protected Spell(ResourceLocation id, List<SpellCost> costs, int cooldownTicks) {
-        this.id = id;
+    protected Spell(String namespace, String name, List<SpellCost> costs, int cooldownTicks) {
+        this.id = ResourceLocation.fromNamespaceAndPath(namespace, "spell." + name);
         this.costs = costs;
         this.cooldownTicks = cooldownTicks;
     }

@@ -19,7 +19,7 @@ public class HasteSpell extends Spell {
 
     public HasteSpell() {
         super(
-                ResourceLocation.parse(TestMagicMod.MODID + ".haste"),
+                TestMagicMod.MODID, "haste",
                 List.of(new ManaCost(MANA_COST)),
                 COOLDOWN_TICKS
         );

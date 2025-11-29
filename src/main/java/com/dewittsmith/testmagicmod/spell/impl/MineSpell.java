@@ -23,7 +23,7 @@ public class MineSpell extends Spell {
 
     public MineSpell() {
         super(
-                ResourceLocation.parse(TestMagicMod.MODID + ".mine"),
+                TestMagicMod.MODID, "spell.mine",
                 List.of(new ManaCost(MANA_COST)),
                 COOLDOWN_TICKS
         );

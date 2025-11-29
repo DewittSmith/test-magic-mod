@@ -18,7 +18,7 @@ public class FireballSpell extends Spell {
 
     public FireballSpell() {
         super(
-                ResourceLocation.parse(TestMagicMod.MODID + ".fireball"),
+                TestMagicMod.MODID, "fireball",
                 List.of(new ManaCost(MANA_COST)),
                 COOLDOWN_TICKS
         );

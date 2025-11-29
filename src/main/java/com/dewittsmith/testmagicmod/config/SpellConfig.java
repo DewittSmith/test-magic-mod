@@ -47,10 +47,10 @@ public class SpellConfig {
             spellSlots = builder
                     .comment("Spell assignments for slots 1-4 (Z, X, C, V keys by default)")
                     .defineList("spell_slots", Arrays.asList(
-                            TestMagicMod.MODID + ".fireball",
-                            TestMagicMod.MODID + ".haste",
-                            TestMagicMod.MODID + ".mine",
-                            TestMagicMod.MODID + ".teleport"
+                            TestMagicMod.MODID + ":spell.fireball",
+                            TestMagicMod.MODID + ":spell.haste",
+                            TestMagicMod.MODID + ":spell.mine",
+                            TestMagicMod.MODID + ":spell.teleport"
                     ), obj -> obj instanceof String);
 
             builder.pop();

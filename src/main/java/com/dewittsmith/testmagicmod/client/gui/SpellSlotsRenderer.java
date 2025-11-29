@@ -185,10 +185,10 @@ public class SpellSlotsRenderer {
         // Simple color coding based on spell name.
         String path = spellId.getPath();
         return switch (path) {
-            case "fireball" -> 0xFFFF4444;
-            case "haste" -> 0xFF44FF44;
-            case "mine" -> 0xFFFFAA44;
-            case "teleport" -> 0xFF4444FF;
+            case "spell.fireball" -> 0xFFFF4444;
+            case "spell.haste" -> 0xFF44FF44;
+            case "spell.mine" -> 0xFFFFAA44;
+            case "spell.teleport" -> 0xFF4444FF;
             default -> 0xFF888888;
         };
     }

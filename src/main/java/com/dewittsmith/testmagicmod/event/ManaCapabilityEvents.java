@@ -20,7 +20,7 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber(modid = TestMagicMod.MODID)
 public class ManaCapabilityEvents {
 
-    private static final ResourceLocation MANA_CAPABILITY_ID = ResourceLocation.parse(TestMagicMod.MODID + ".mana");
+    private static final ResourceLocation MANA_CAPABILITY_ID = ResourceLocation.fromNamespaceAndPath(TestMagicMod.MODID, "mana");
 
     @SubscribeEvent
     public static void onRegisterCapabilities(RegisterCapabilitiesEvent event) {

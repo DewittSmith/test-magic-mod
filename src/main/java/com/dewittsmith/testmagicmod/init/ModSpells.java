@@ -17,14 +17,14 @@ import javax.annotation.Nullable;
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModSpells {
 
-    public static final ResourceLocation SPELL_REGISTRY_NAME = ResourceLocation.parse(TestMagicMod.MODID + ".spells");
+    public static final ResourceLocation SPELL_REGISTRY_NAME = ResourceLocation.fromNamespaceAndPath(TestMagicMod.MODID, "spells");
 
     public static final DeferredRegister<ISpell> SPELLS = DeferredRegister.create(SPELL_REGISTRY_NAME, TestMagicMod.MODID);
 
-    public static final RegistryObject<ISpell> FIREBALL = SPELLS.register("fireball", FireballSpell::new);
-    public static final RegistryObject<ISpell> HASTE = SPELLS.register("haste", HasteSpell::new);
-    public static final RegistryObject<ISpell> MINE = SPELLS.register("mine", MineSpell::new);
-    public static final RegistryObject<ISpell> TELEPORT = SPELLS.register("teleport", TeleportSpell::new);
+    public static final RegistryObject<ISpell> FIREBALL = SPELLS.register("spell.fireball", FireballSpell::new);
+    public static final RegistryObject<ISpell> HASTE = SPELLS.register("spell.haste", HasteSpell::new);
+    public static final RegistryObject<ISpell> MINE = SPELLS.register("spell.mine", MineSpell::new);
+    public static final RegistryObject<ISpell> TELEPORT = SPELLS.register("spell.teleport", TeleportSpell::new);
 
     public static void register(IEventBus eventBus) {
         SPELLS.register(eventBus);
@@ -37,7 +37,7 @@ public class ModSpells {
 
     @Nullable
     public static ISpell getSpell(String name) {
-        return getSpell(ResourceLocation.parse(TestMagicMod.MODID + "." + name));
+        return getSpell(ResourceLocation.fromNamespaceAndPath(TestMagicMod.MODID, name));
     }
 
     @SuppressWarnings("UnstableApiUsage")
